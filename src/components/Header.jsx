@@ -1,4 +1,5 @@
 import logoImg from '../assets/logo.jpg'; 
+import Button from './UI/Button';
 
 function handleOpenCartClick() {
 
@@ -13,7 +14,7 @@ export default function Header() {
             </div>
             <nav>
                 <p>
-                    <button onClick={handleOpenCartClick}>Cart (0)</button>
+                    <Button textOnly>Cart (0)</Button>
                 </p>
             </nav>
         </header>
