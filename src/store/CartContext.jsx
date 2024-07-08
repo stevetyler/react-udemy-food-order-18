@@ -9,7 +9,6 @@ const CartContext = createContext({
 function cartReducer(state, action) {
   if (action.type === 'ADD_ITEM') {
     const existingCartItemIndex = state.items.findIndex((item) => item.id === action.item.id);
-
     const updatedItems = [...state.items]; // copy of old item objects
 
     if (existingCartItemIndex > -1 ) {
