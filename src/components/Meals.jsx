@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import Error from './Error';
 import MealItem from './MealItem';
 import useHttp from '../hooks/useHttp';
 
@@ -13,16 +13,17 @@ export default function Meals() {
   } = useHttp('http://localhost:3000/meals', requestConfig, []);
   
   if (isLoading) {
-    return (
-      <p className="center">Fetching meals...</p>
-    );
+    return <p className="center">Fetching meals...</p>
+  
   }
 
-  // if (error) {
-  //   return <section className="meals-error">
-  //     <p>{error}</p>
-  //   </section>;
-  // }
+  if (error) {
+    return (
+      <Error title="Failed to fetch meals" message={error}>
+
+      </Error>
+    )
+  }
 
   return (
     <ul id="meals">
