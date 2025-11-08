@@ -1,1 +1,30 @@
-[]
+[
+    {
+        "items": [
+            {
+                "id": "m3",
+                "name": "Caesar Salad",
+                "price": "7.99",
+                "description": "Romaine lettuce tossed in Caesar dressing, topped with croutons and parmesan shavings.",
+                "image": "images/caesar-salad.jpg",
+                "qty": 2
+            },
+            {
+                "id": "m2",
+                "name": "Margherita Pizza",
+                "price": "12.99",
+                "description": "A classic pizza with fresh mozzarella, tomatoes, and basil on a thin and crispy crust.",
+                "image": "images/margherita-pizza.jpg",
+                "qty": 1
+            }
+        ],
+        "customer": {
+            "name": "Steve Tyler",
+            "email": "steve.tyler75@gmail.com",
+            "street": "2 Chilton Close",
+            "postal-code": "HP10 8AQ",
+            "city": "High Wycombe"
+        },
+        "id": "242.42381770662791"
+    }
+]

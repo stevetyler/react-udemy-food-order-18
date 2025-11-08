@@ -1,5 +1,4 @@
 import { useState, useCallback, useEffect } from "react";
-import { send } from "vite";
 
 async function sendHttpRequest(url, config) {
     const response = await fetch(url, config);
@@ -11,27 +10,30 @@ async function sendHttpRequest(url, config) {
     }
 }
 
-export default function useHttp(url, config) {
-    const [data, setData] = useState(null);
+export default function useHttp(url, config, initialData) {
+    const [data, setData] = useState(initialData);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
 
-    const sendRequest = useCallback(async function sendRequest(url, config) {
-        setIsLoading(true);
-        try {
-            const resData = await sendHttpRequest(url, config);
-            setData(resData);
-        } catch (error) {
-           setError(error.message || 'Something went wrong!');
-        }
-        setIsLoading(false);
-    }, [url, config]);
+    const sendRequest = useCallback(
+        async function sendRequest(url, config) {
+            setIsLoading(true);
+            try {
+                const resData = await sendHttpRequest(url, config);
+                setData(resData);
+            } catch (error) {
+            setError(error.message || 'Something went wrong!');
+            }
+            setIsLoading(false);
+        }, [url, config]
+    );
 
     useEffect(() => {
-        if (config && config.method === 'GET') {
+        // only for GET requests by default
+        if ((config && (config.method === 'GET' || !config.method)) || !config) {
             sendRequest();
         }
-    }, [sendRequest]);
+    }, [sendRequest, config]);
 
     return {
         data,
