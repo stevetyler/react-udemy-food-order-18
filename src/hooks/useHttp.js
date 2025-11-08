@@ -2,21 +2,23 @@ import { useState, useCallback, useEffect } from "react";
 
 async function sendHttpRequest(url, config) {
     const response = await fetch(url, config);
-
     const resData = await response.json();
 
     if (!response.ok) {
         throw new Error(resData.message || 'Request failed!')
     }
+    return resData;
 }
 
 export default function useHttp(url, config, initialData) {
+    console.log('params received for useHttp', url, config);
     const [data, setData] = useState(initialData);
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState();
 
     const sendRequest = useCallback(
-        async function sendRequest(url, config) {
+        async function sendRequest() {
+            console.log('sending request from useCallback', url, config);
             setIsLoading(true);
             try {
                 const resData = await sendHttpRequest(url, config);

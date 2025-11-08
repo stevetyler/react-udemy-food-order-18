@@ -2,18 +2,20 @@ import { useState, useEffect } from 'react';
 import MealItem from './MealItem';
 import useHttp from '../hooks/useHttp';
 
+const requestConfig = {};
+
 export default function Meals() {
-  const requestConfig = {};
+  
   const { 
     data: availableMeals, 
     isLoading, 
     error 
-  } = useHttp('http://localhost:3000/meals', null, []);
+  } = useHttp('http://localhost:3000/meals', requestConfig, []);
   
   if (isLoading) {
-    return <section className="meals-loading">
-      <p>Fetching meals...</p>
-    </section>;
+    return (
+      <p className="center">Fetching meals...</p>
+    );
   }
 
   // if (error) {
@@ -21,7 +23,6 @@ export default function Meals() {
   //     <p>{error}</p>
   //   </section>;
   // }
-
 
   return (
     <ul id="meals">
